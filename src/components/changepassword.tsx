@@ -23,18 +23,18 @@ export default function ChangePassword(){
 
             {/* passwords */}
             <label htmlFor="password">Password</label>
-            <input type="password" id="password"
+            <input type="password" id="password" className="form-control form-control-sm"
             {...register('password')}
             />
 
             {/* confirm passwords */}
             <label htmlFor="password">Confirm Password</label>
-            <input type="password" id="confirmPassword"
+            <input type="password" id="confirmPassword" className="form-control form-control-sm"
             {...register('confirmPassword')}
             />
 
             {/* submit form */}
-            <button type="submit">
+            <button className="btn btn-primary" type="submit">
             Submit
             </button>
 
