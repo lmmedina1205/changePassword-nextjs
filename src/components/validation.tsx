@@ -32,23 +32,28 @@ export default function validation(password: String, confirmPassword: String){
       if(lenpass >= 8){ //if the password has at least 8 characters, it will be compared
         if(!ArrayComparator(capitals, desc)){
           res.status = false;
-          res.msg = "it must be at least 1 capital letter";
+          // res.msg = "it must be at least 1 capital letter";
+          res.msg = "Debe tener al menos 1 letra mayúscula";
         }
         if(!ArrayComparator(letters, desc)){
           res.status = false
-          res.msg = "it must be at least 1 Lowercase letter";
+          // res.msg = "it must be at least 1 Lowercase letter";
+          res.msg = "Debe tener al menos 1 letra minúscula";
         }
         if(!ArrayComparator(numbers, desc)){
           res.status = false;
-          res.msg = "it must be at least 1 number";
+          // res.msg = "it must be at least 1 number";
+          res.msg = "Debe tener al menos 1 número";
         }
         if(!ArrayComparator(symbol, desc)){
           res.status = false;
-          res.msg = "it must be at least 1 symbol";
+          // res.msg = "it must be at least 1 symbol";
+          res.msg = "Debe tener al menos 1 símbolo";
         }
       }else{
         res.status = false;
-        res.msg = "it must be at least 8 characters";
+        // res.msg = "it must be at least 8 characters";
+        res.msg = "Debe tener al menos 8 caracteres";
       }
     }else{
       res.status = false;

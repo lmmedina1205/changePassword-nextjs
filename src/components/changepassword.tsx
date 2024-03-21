@@ -1,8 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import {  useState } from "react";
 import { useForm } from "react-hook-form";
 import validation from "./validation";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+    //   toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  
+
 export default function ChangePassword(){
     const { register, handleSubmit} = useForm();
     const [state, setState ] = useState({
@@ -11,7 +29,12 @@ export default function ChangePassword(){
       });
     const handledata = (data:any)=>{
         const { password, confirmPassword } = data
-        setState(validation(password, confirmPassword));
+        let newData = validation(password, confirmPassword)
+        setState(newData);
+        Toast.fire({
+            icon: (newData.status ? "success" : "error"),
+            title: newData.msg
+        })
     }
     return(
 
@@ -40,7 +63,7 @@ export default function ChangePassword(){
 
         </form>
 
-        <h2 className={ (state.status ? "success":"wrong") } > {state.msg} </h2>
+        {/* <h2 className={ (state.status ? "success":"wrong") } > {state.msg} </h2> */}
 
     </div>
 
