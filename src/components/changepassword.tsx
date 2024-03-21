@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import validation from "./validation";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 // const MySwal = withReactContent(Swal);
 
@@ -20,8 +21,7 @@ const Toast = Swal.mixin({
     }
   });
 
-  
-  
+
 
 export default function ChangePassword(){
     const { register, handleSubmit} = useForm();
@@ -29,6 +29,7 @@ export default function ChangePassword(){
         status: true,
         msg: ""
       });
+      const [ hidden, setHidden ] = useState(true);
     const handledata = (data:any)=>{
         const { password, confirmPassword } = data
         let newData = validation(password, confirmPassword)
@@ -55,20 +56,21 @@ export default function ChangePassword(){
             <h1>Cambio de Contraseña</h1> <br />
 
             {/* passwords */}
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" className="form-control form-control-sm"
+            <label htmlFor="password">Contraseña&nbsp;&nbsp;<span onClick={()=> setHidden(hidden ? false : true) }>{(hidden ? <FaEyeSlash /> : <FaEye />)}</span></label>
+            <input type={hidden ? "password":"text"} id="password" className="form-control form-control-sm"
             {...register('password')}
             />
 
             {/* confirm passwords */}
-            <label htmlFor="password">Confirm Password</label>
-            <input type="password" id="confirmPassword" className="form-control form-control-sm"
+            <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
+            <input type={hidden ? "password":"text"} id="confirmPassword" className="form-control form-control-sm"
             {...register('confirmPassword')}
             />
+            
 
             {/* submit form */}
             <button className="btn btn-primary" type="submit">
-            Submit
+            Cambiar
             </button>
 
         </form>
