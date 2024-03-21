@@ -9,7 +9,8 @@ export default function validation(password: String, confirmPassword: String){
     const symbol = [ "!", "@", "#", "$", "^", "&", "(", ")", "_", "=", "+", "-", "*", "/", "%", "<", ">", "?", "[", "]", "{", "}"];
     var res = {
       status: true,
-      msg: "everything is ok"
+      // msg: "everything is ok"
+      msg: "Cambio Exitoso!"
     };
     //function to compare two arrays and know if they have at least one value in common
     const ArrayComparator = (array1 : any[], array2 : any[])=>{
@@ -57,7 +58,8 @@ export default function validation(password: String, confirmPassword: String){
       }
     }else{
       res.status = false;
-      res.msg = "difference";
+      // res.msg = "difference";
+      res.msg = "Las contraseñas no coinciden";
     }
     return res
   }

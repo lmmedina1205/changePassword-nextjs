@@ -6,7 +6,7 @@ import validation from "./validation";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-const MySwal = withReactContent(Swal);
+// const MySwal = withReactContent(Swal);
 
 const Toast = Swal.mixin({
     toast: true,
@@ -19,6 +19,8 @@ const Toast = Swal.mixin({
       toast.onmouseleave = Swal.resumeTimer;
     }
   });
+
+  
   
 
 export default function ChangePassword(){
@@ -31,10 +33,18 @@ export default function ChangePassword(){
         const { password, confirmPassword } = data
         let newData = validation(password, confirmPassword)
         setState(newData);
-        Toast.fire({
-            icon: (newData.status ? "success" : "error"),
-            title: newData.msg
-        })
+        if(newData.status){
+            Swal.fire({
+                title: newData.msg,
+                text: "Cambio de Contraseña exitoso!",
+                icon: "success"
+              });
+        }else{
+            Toast.fire({
+                icon: "error",
+                title: newData.msg
+            })
+        }
     }
     return(
 
