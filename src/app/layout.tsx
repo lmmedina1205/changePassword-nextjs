@@ -17,6 +17,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
+  
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
+      <title>Cambio de contraseña</title>
     </html>
   );
 }
