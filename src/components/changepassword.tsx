@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import validation from "./validation";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { FaArrowRightFromBracket, FaEye, FaEyeSlash } from "react-icons/fa6";
 
 // const MySwal = withReactContent(Swal);
 
@@ -57,7 +57,7 @@ export default function ChangePassword(){
         <div className="container">
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
-              <h3 className="login-heading mb-4" id="login-heading">Cambio de Contraseña!&nbsp;&nbsp;<span onClick={()=> setHidden(hidden ? false : true) }>{(hidden ? <FaEyeSlash /> : <FaEye />)}</span></h3>
+              <h4 className="login-heading mb-4" id="login-heading">Cambio de Contraseña!&nbsp;&nbsp;<span onClick={()=> setHidden(hidden ? false : true) }>{(hidden ? <FaEyeSlash /> : <FaEye />)}</span></h4>
                 <form onSubmit={handleSubmit(data => {handledata(data)})}>
                     <div className="form-floating mb-3">
                     {/* passwords */}
@@ -71,7 +71,7 @@ export default function ChangePassword(){
 
                     <div className="d-grid">
                     {/* submit form */}
-                    <button className="btn btn-lg btn-login text-uppercase fw-bold mb-2" id="btn-login" type="submit">Cambiar</button>
+                    <button className="btn btn-lg btn-login text-uppercase fw-bold mb-2" id="btn-login" type="submit">Cambiar&nbsp;&nbsp;<span><FaArrowRightFromBracket  /></span></button>
                     </div>
               </form>
             </div>
