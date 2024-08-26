@@ -57,7 +57,7 @@ export default function ChangePassword(){
         <div className="container">
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
-              <h4 className="login-heading mb-4" id="login-heading">Cambio de Contraseña!&nbsp;&nbsp;<span onClick={()=> setHidden(hidden ? false : true) }>{(hidden ? <FaEyeSlash /> : <FaEye />)}</span></h4>
+              <h4 className="login-heading mb-4" id="login-heading">!Cambio de Contraseña!&nbsp;&nbsp;<span onClick={()=> setHidden(hidden ? false : true) }>{(hidden ? <FaEyeSlash /> : <FaEye />)}</span></h4>
                 <form onSubmit={handleSubmit(data => {handledata(data)})}>
                     <div className="form-floating mb-3">
                     {/* passwords */}
