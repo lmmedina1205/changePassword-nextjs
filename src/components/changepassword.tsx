@@ -30,6 +30,7 @@ export default function ChangePassword(){
         msg: ""
       });
       const [ hidden, setHidden ] = useState(true);
+      const [passwordValue, setPasswordValue] = useState("");
     const handledata = (data:any)=>{
         const { password, confirmPassword } = data
         let newData = validation(password, confirmPassword)
@@ -61,7 +62,10 @@ export default function ChangePassword(){
                 <form onSubmit={handleSubmit(data => {handledata(data)})}>
                     <div className="form-floating mb-3">
                     {/* passwords */}
-                    <input type={hidden ? "password":"text"} id="password" className="form-control" {...register('password')}/>
+                    <input type={hidden ? "password":"text"} id="password" className="form-control" {...register('password')}
+                      value={passwordValue}
+                      onChange={e => setPasswordValue(e.target.value)}
+                    />
                     <label htmlFor="password">Contraseña</label>
                     </div>
                     <div className="form-floating mb-3">
@@ -69,7 +73,29 @@ export default function ChangePassword(){
                     <label htmlFor="confirmPassword">Confirmar Contraseña</label>
                     </div>
 
-                    <div className="d-grid">
+                    {/* Indicador de requisitos de contraseña */}
+                    {passwordValue.length > 0 && (
+                      <div style={{ fontSize: "0.95rem", marginTop: "0.5rem" }}>
+                        <ul style={{ listStyle: "none", paddingLeft: 0, marginBottom: 0 }}>
+                          <li style={{ color: passwordValue.length >= 8 ? 'green' : 'red' }}>
+                            {passwordValue.length >= 8 ? '✔' : '✖'} Al menos 8 caracteres
+                          </li>
+                          <li style={{ color: /[a-z]/.test(passwordValue) ? 'green' : 'red' }}>
+                            {/[a-z]/.test(passwordValue) ? '✔' : '✖'} Al menos una letra minúscula
+                          </li>
+                          <li style={{ color: /[A-Z]/.test(passwordValue) ? 'green' : 'red' }}>
+                            {/[A-Z]/.test(passwordValue) ? '✔' : '✖'} Al menos una letra mayúscula
+                          </li>
+                          <li style={{ color: /[0-9]/.test(passwordValue) ? 'green' : 'red' }}>
+                            {/[0-9]/.test(passwordValue) ? '✔' : '✖'} Al menos un número
+                          </li>
+                          <li style={{ color: /[^A-Za-z0-9]/.test(passwordValue) ? 'green' : 'red' }}>
+                            {/[^A-Za-z0-9]/.test(passwordValue) ? '✔' : '✖'} Al menos un símbolo
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                    <div className="d-grid pt-3">
                     {/* submit form */}
                     <button className="btn btn-lg btn-login text-uppercase fw-bold mb-2" id="btn-login" type="submit">Cambiar&nbsp;&nbsp;<span><FaArrowRightFromBracket  /></span></button>
                     </div>
