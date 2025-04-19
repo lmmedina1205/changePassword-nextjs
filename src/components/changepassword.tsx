@@ -24,13 +24,14 @@ const Toast = Swal.mixin({
 
 
 export default function ChangePassword(){
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [state, setState ] = useState({
         status: true,
         msg: ""
       });
       const [ hidden, setHidden ] = useState(true);
       const [passwordValue, setPasswordValue] = useState("");
+      const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
     const handledata = (data:any)=>{
         const { password, confirmPassword } = data
         let newData = validation(password, confirmPassword)
@@ -41,6 +42,9 @@ export default function ChangePassword(){
                 text: "Cambio de Contraseña exitoso!",
                 icon: "success"
               });
+            setPasswordValue("");
+            setConfirmPasswordValue("");
+            reset();
         }else{
             Toast.fire({
                 icon: "error",
@@ -69,7 +73,10 @@ export default function ChangePassword(){
                     <label htmlFor="password">Contraseña</label>
                     </div>
                     <div className="form-floating mb-3">
-                    <input type={hidden ? "password":"text"} className="form-control" id="confirmPassword" {...register('confirmPassword')}/>
+                    <input type={hidden ? "password":"text"} className="form-control" id="confirmPassword" {...register('confirmPassword')}
+                      value={confirmPasswordValue}
+                      onChange={e => setConfirmPasswordValue(e.target.value)}
+                    />
                     <label htmlFor="confirmPassword">Confirmar Contraseña</label>
                     </div>
 
